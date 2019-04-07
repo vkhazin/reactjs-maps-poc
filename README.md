@@ -3,6 +3,7 @@
 ## Requirements
 
 1. ReactJS SPA web application with the least number of artefacts in the project
+1. Responsive and mobile browser friendl
 1. Maps is to center on the current user geo location
 1. Please note: currently, the data is availalbe in Southern Ontario, Canada only
 1. Maps tab is to display geoHash overlay based on geoHash query to the end-point mapping the Avg(***value***) NOT Sum(***count***)
