@@ -2,8 +2,9 @@
 
 ## Requirements
 
-1. Two tabs User Interface: maps tab and a bank as a second tab, tabs are at the bottom of the screen
-1. Must use expo.io SDK with a minimal number of artefacts
+1. Two tabs User Interface: maps tab and a bank as a second tab
+1. Tabs navigation bar is at the bottom of screen
+1. Must use expo.io SDK with a minimal number of artefacts in the project
 1. Must work on iOS and Android
 1. Maps tab to center on the current user geo location, note: currently the data is availalbe in southern Ontario, Canada
 1. Maps to display geoHash overlay based on geoHash query to the end-point mapping the Avg(***value***) NOT Sum(***count***)
