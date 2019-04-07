@@ -11,6 +11,8 @@
 1. Maps tab is to display geoHash overlay based on geoHash query to the end-point mapping the Avg(***value***) NOT Sum(***count***)
 1. User can scroll the map with overlay updated automatically
 1. User can zoom in and out with increased/decreased precision of the data plotted on the map
+1. Map dynamically adjusts the data ploted based on the zoom level and the current map center, e.g.:
+![]./media/sample-map.png
 1. Developer will address comments and issues reported
 1. Developer will Walk thorugh the deliverables to explain the details and artefacts in the project
 
