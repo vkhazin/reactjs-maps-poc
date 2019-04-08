@@ -75,3 +75,5 @@ curl -POST https://gsqztydwpe.execute-api.us-east-1.amazonaws.com/latest/geoHash
 1. Commit to your own repo
 1. Submit a pull request for review and acceptance
 
+
+
