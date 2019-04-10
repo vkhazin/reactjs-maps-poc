@@ -2,64 +2,27 @@ import React from "react"
 import { compose, withProps, withHandlers } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 import axios from 'axios';
-// const MyMapComponent = compose(
-//   withProps({
-//     googleMapURL: "https://maps.googleapis.com/maps/api/js?key&v=3.exp&libraries=geometry,drawing,places",
-//     loadingElement: <div style={{ height: `100%` }} />,
-//     containerElement: <div style={{ height: `400px` }} />,
-//     mapElement: <div style={{ height: `100%` }} />,
-//   }),
-//   withScriptjs,
-//   withGoogleMap
-// )((props) =>
-//   <GoogleMap
-//     defaultZoom={8}
-//     defaultCenter={{ lat: 43.85275773228681, lng: -79.48056226373973 }}
-//   >
 
-//     {props.isMarkerShown && <Marker position={{ lat:43.85275773228681, lng: -79.48056226373973 }} onClick={props.onMarkerClick} />}
-//   </GoogleMap>
-// )
-
-// class Map extends React.PureComponent {
-//   state = {
-//     isMarkerShown: true,
-//   }
-
-//   componentDidMount() {
-//     this.delayedShowMarker()
-//   }
-
-//   delayedShowMarker = () => {
-//     setTimeout(() => {
-//       this.setState({ isMarkerShown: true })
-//     }, 3000)
-//   }
-
-//   handleMarkerClick = () => {
-//     this.setState({ isMarkerShown: false })
-//     this.delayedShowMarker()
-//   }
-
-//   render() {
-//     return (
-//       <MyMapComponent
-//         isMarkerShown={this.state.isMarkerShown}
-//         onMarkerClick={this.handleMarkerClick}
-//       />
-//     )
-//   }
-// }
-// export default Map;
-import fetch   from "isomorphic-fetch";
-
+var lata=43.8527577322868;
+var lnga=-79.48056226373973;
+//_______________________________________  2.Maps is to center on the current user geo location ___
+// navigator.geolocation.getCurrentPosition(
+//   position => {
+//     lata= position.coords.latitude; 
+//     lnga=position.coords.longitude;
+//   },
+//   error => console.log(error)
+// );
+var screenHeight='550px';
+ screenHeight=window.innerHeight-60 +'px';
 const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
 
 const MapWithAMarkerClusterer = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?key&v=3.exp&libraries=geometry,drawing,places",
-    loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `400px` }} />,
+     loadingElement: <div style={{ height: `100%` }} />,
+    containerElement: <div style={{ height: screenHeight}} />,
+    // containerElement: <div className="full" />,
     mapElement: <div style={{ height: `100%` }} />,
   }),
   withHandlers({
@@ -74,8 +37,8 @@ const MapWithAMarkerClusterer = compose(
   withGoogleMap
 )(props =>
   <GoogleMap
-    defaultZoom={3}
-    defaultCenter={{ lat:43.85275773228681, lng: -79.48056226373973 }}
+    defaultZoom={11}
+    defaultCenter={{ lat: lata, lng: lnga }}
   >
     <MarkerClusterer
       onClick={props.onMarkerClustererClick}
@@ -85,10 +48,8 @@ const MapWithAMarkerClusterer = compose(
     >
       {props.markers.map(marker => (
         <Marker
-          key={marker.count}
-          position={{ lat:  43.85275773228681, lng: -79.48056226373973}}
-          // position={{ lat: marker.latitude, lng: marker.longitude }}
-          
+          key={marker.geoPoint}
+          position={{ lat:  marker.location['lat'], lng: marker.location['lon']}} 
         />
       ))}
     </MarkerClusterer>
@@ -97,7 +58,11 @@ const MapWithAMarkerClusterer = compose(
 
 class Map extends React.PureComponent {
   componentWillMount() {
-    this.setState({ markers: [] })
+    this.setState({ 
+      markers: [] ,
+      lat:43.85275773228681,
+      lng:-79.48056226373973
+    })
   }
 
   componentDidMount() {
@@ -136,6 +101,7 @@ class Map extends React.PureComponent {
 
       .then(res => {
         console.log(res.data);
+        console.log("kkk"+window.innerHeight);
         this.setState({markers:res.data})
         
       })

@@ -50,10 +50,6 @@ export default class GetList extends React.Component {
       "precision": this.state.precision,
       "timeoutMs": this.state.timeoutMs
     })
-    //then(res => res.json())
-  //   .then(data => {
-  //     this.setState({ markers: data.photos });
-  //    })
       .then(res => {
         console.log(res.data);
         this.setState({point:res.data})
@@ -66,6 +62,7 @@ export default class GetList extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <label>
+            <h2>Test in console</h2>
             <p>timestampMs</p>
             From:
             <input type="text" name="from" onChange={this.handleChangeFrom} value={this.state.from}/>
@@ -92,8 +89,6 @@ export default class GetList extends React.Component {
           <button type="submit">Send</button>
           <p>{this.state.point.length}</p>
           <p>{typeof(this.state.point)}</p>
-          <p>{this.state.point.geoPoint}</p> 
-          {/* <p>{this.state.point[0].geoPoint}</p> */}
         </form>
       </div>
     )
