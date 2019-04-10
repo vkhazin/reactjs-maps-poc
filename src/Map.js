@@ -14,14 +14,12 @@ navigator.geolocation.getCurrentPosition(
   },
   error => console.log(error)
 );
-var screenHeight='550px';
- screenHeight=window.innerHeight-60 +'px'; 
 
 const MapWithAMarkerClusterer = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?key&v=3.exp&libraries=geometry,drawing,places",
      loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `85vh` }} />,
+    containerElement: <div className='hhh' />,
     // containerElement: <div className="full" />,
     mapElement: <div style={{ height: `100%` }} />,
   }),
@@ -91,7 +89,6 @@ class Map extends React.PureComponent {
 
       .then(res => {
         console.log(res.data);
-        console.log("kkk"+window.innerHeight);
         this.setState({markers:res.data})        
       })
   }
