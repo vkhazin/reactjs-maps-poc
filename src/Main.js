@@ -13,7 +13,6 @@ class Main extends Component {
     return (
         <HashRouter>
           <div className="full">
-            
             <nav class="navbar navbar-expand-sm navbar-dark bg-dark ">
               <a class="navbar-brand" href="#"><h2>Simple SPA</h2></a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,21 +28,20 @@ class Main extends Component {
                   </li>
                   <li class="nav-item">
                     {/* <a class="nav-link" href="#">GoogleMap</a> */}
-                    <NavLink to="/Map" className="nav-link">Googl map</NavLink>
+                    <NavLink to="/Map" className="nav-link">GooglMmap</NavLink>
                   </li>
                 </ul>
               </div>
             </nav>
-          
             <div className="content">
               <Route exact path="/" component={Home}/>
               <Route path="/GetList" component={GetList}/>
               <Route path="/Map" component={Map}/>
             </div>
-        </div>
+          </div>
         </HashRouter>
         
-    );
+    )
   }
 }
  

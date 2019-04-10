@@ -2,6 +2,7 @@ import React from "react"
 import { compose, withProps, withHandlers } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 import axios from 'axios';
+import { MarkerClusterer }  from "react-google-maps/lib/components/addons/MarkerClusterer";
 
 var lata=43.8527577322868;
 var lnga=-79.48056226373973;
@@ -14,8 +15,7 @@ var lnga=-79.48056226373973;
 //   error => console.log(error)
 // );
 var screenHeight='550px';
- screenHeight=window.innerHeight-60 +'px';
-const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
+ screenHeight=window.innerHeight-60 +'px'; 
 
 const MapWithAMarkerClusterer = compose(
   withProps({
@@ -44,7 +44,7 @@ const MapWithAMarkerClusterer = compose(
       onClick={props.onMarkerClustererClick}
       averageCenter
       enableRetinaIcons
-      gridSize={60}
+      gridSize={20}
     >
       {props.markers.map(marker => (
         <Marker
@@ -95,7 +95,7 @@ class Map extends React.PureComponent {
           "lon": -77.137755          
         }
       },
-      "precision": 5,
+      "precision": 12,
       "timeoutMs": 30000
     })
 
