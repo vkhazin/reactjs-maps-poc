@@ -11,7 +11,7 @@ navigator.geolocation.getCurrentPosition(
   position => {
     lata= position.coords.latitude; 
     lnga=position.coords.longitude;
-  },
+  }, 
   error => console.log(error)
 );
 
