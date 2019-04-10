@@ -7,13 +7,13 @@ import { MarkerClusterer }  from "react-google-maps/lib/components/addons/Marker
 var lata=43.8527577322868;
 var lnga=-79.48056226373973;
 //_______________________________________  2.Maps is to center on the current user geo location ___
-// navigator.geolocation.getCurrentPosition(
-//   position => {
-//     lata= position.coords.latitude; 
-//     lnga=position.coords.longitude;
-//   },
-//   error => console.log(error)
-// );
+navigator.geolocation.getCurrentPosition(
+  position => {
+    lata= position.coords.latitude; 
+    lnga=position.coords.longitude;
+  },
+  error => console.log(error)
+);
 var screenHeight='550px';
  screenHeight=window.innerHeight-60 +'px'; 
 
@@ -21,7 +21,7 @@ const MapWithAMarkerClusterer = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?key&v=3.exp&libraries=geometry,drawing,places",
      loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: screenHeight}} />,
+    containerElement: <div style={{ height: screenHeight }} />,
     // containerElement: <div className="full" />,
     mapElement: <div style={{ height: `100%` }} />,
   }),
@@ -39,6 +39,8 @@ const MapWithAMarkerClusterer = compose(
   <GoogleMap
     defaultZoom={11}
     defaultCenter={{ lat: lata, lng: lnga }}
+    gestureHandling='none'
+    fullscreenControl={true}
   >
     <MarkerClusterer
       onClick={props.onMarkerClustererClick}
@@ -66,19 +68,7 @@ class Map extends React.PureComponent {
   }
 
   componentDidMount() {
-    // const url = [
-    //   // Length issue
-    //   `https://gist.githubusercontent.com`,
-    //   `/farrrr/dfda7dd7fccfec5474d3`,
-    //   `/raw/758852bbc1979f6c4522ab4e92d1c92cba8fb0dc/data.json`
-    // ].join("")
 
-    // fetch(url)
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     console.log(data.photos);
-    //     this.setState({ markers: data.photos });
-    //   });
     axios.post(`https://gsqztydwpe.execute-api.us-east-1.amazonaws.com/latest/geoHash`, 
     {
       "timestampMs": {
@@ -102,8 +92,7 @@ class Map extends React.PureComponent {
       .then(res => {
         console.log(res.data);
         console.log("kkk"+window.innerHeight);
-        this.setState({markers:res.data})
-        
+        this.setState({markers:res.data})        
       })
   }
   

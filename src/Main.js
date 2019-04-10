@@ -4,8 +4,6 @@ import {
     NavLink,
     HashRouter
   } from "react-router-dom";
-  import Home from "./Home";
-  import GetList from "./GetList";
   import Map from "./Map";
 
 class Main extends Component {
@@ -20,12 +18,6 @@ class Main extends Component {
               </button>
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ">
-                  <li class="nav-item active">
-                    <NavLink to="/" className="nav-link">Home</NavLink>
-                  </li>
-                  <li class="nav-item">
-                    <NavLink to="/GetList" className="nav-link">Search</NavLink>
-                  </li>
                   <li class="nav-item">
                     {/* <a class="nav-link" href="#">GoogleMap</a> */}
                     <NavLink to="/Map" className="nav-link">GooglMmap</NavLink>
@@ -34,9 +26,7 @@ class Main extends Component {
               </div>
             </nav>
             <div className="content">
-              <Route exact path="/" component={Home}/>
-              <Route path="/GetList" component={GetList}/>
-              <Route path="/Map" component={Map}/>
+              <Route path="/" component={Map}/>
             </div>
           </div>
         </HashRouter>
