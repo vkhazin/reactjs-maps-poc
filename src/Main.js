@@ -8,7 +8,7 @@ import {
 
 class Main extends Component {
   render() {
-    return (
+    return ( 
         <HashRouter>
           <div className="full">
             <nav class="navbar navbar-expand-sm navbar-dark bg-dark ">

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Clock from './Clock';
-import Btn from './Btn';
+
 
 class App extends Component {
   render() {
@@ -22,8 +21,6 @@ class App extends Component {
             Learn React
           </a>
         </header>
-        <Clock></Clock>
-        <Btn></Btn>
       </div>
     );
   }
