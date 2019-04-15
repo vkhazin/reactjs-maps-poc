@@ -67,7 +67,7 @@ class Map extends React.PureComponent {
 
   componentDidMount() {
 
-    axios.post(`https://gsqztydwpe.execute-api.us-east-1.amazonaws.com/latest/geoHash`, 
+    axios.post(`https://gsqztydwpe.execute-api.us-east-1.amazonaws.com/latest/geoHash`, //send request
     {
       "timestampMs": {
         "from": 1239065720835,
@@ -87,7 +87,7 @@ class Map extends React.PureComponent {
       "timeoutMs": 30000
     })
 
-      .then(res => {
+      .then(res => {  //response
         console.log(res.data);
         this.setState({markers:res.data})        
       })

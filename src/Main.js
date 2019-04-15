@@ -4,7 +4,8 @@ import {
     NavLink,
     HashRouter
   } from "react-router-dom";
-  import Map from "./Map";
+  // import Map from "./Map";
+  import MapContainer from "./Map2";
 
 class Main extends Component {
   render() {
@@ -20,13 +21,13 @@ class Main extends Component {
                 <ul class="navbar-nav ">
                   <li class="nav-item">
                     {/* <a class="nav-link" href="#">GoogleMap</a> */}
-                    <NavLink to="/Map" className="nav-link">GooglMmap</NavLink>
+                    <NavLink to="/Map2" className="nav-link">GooglMmap</NavLink>
                   </li>
                 </ul>
               </div>
             </nav>
             <div className="content">
-              <Route path="/" component={Map}/>
+              <Route path="/" component={MapContainer}/>
             </div>
           </div>
         </HashRouter>
