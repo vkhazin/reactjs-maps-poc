@@ -1,12 +1,11 @@
 import React, {Component} from "react"
-import PropTypes from 'prop-types';
 import { compose, withProps, withState, withHandlers }  from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker,InfoWindow , Circle } from "react-google-maps"
 import axios from 'axios';
-var markerOk = require('./asset/aa.png');
+
 var image= {
-  high: {url: require('./asset/2.png')},
-  medium:{url: require('./asset/1.png')},
+  high: {url: require('./asset/1.png')},
+  medium:{url: require('./asset/2.png')},
   low:{url: require('./asset/3.png')}
 
 }
@@ -14,13 +13,13 @@ var image= {
 var lata=43.8527577322868;
 var lnga=-79.48056226373973;
 //_______________________________________  2.Maps is to center on the current user geo location ___
-// navigator.geolocation.getCurrentPosition(
-//   position => {
-//     lata= position.coords.latitude; 
-//     lnga=position.coords.longitude;
-//   }, 
-//   error => console.log(error)
-// );
+navigator.geolocation.getCurrentPosition(
+  position => {
+    lata= position.coords.latitude; 
+    lnga=position.coords.longitude;
+  }, 
+  error => console.log(error)
+);
 
 const MapWithControlledZoom = compose(
   withProps({
@@ -31,24 +30,6 @@ const MapWithControlledZoom = compose(
     
   }),
   withState('zoom', 'onZoomChange', 8),
-  // withHandlers(() => {
-  //   const refs = {
-  //     map: undefined,
-  //   }
-
-  //   return {
-  //     onMapMounted: () => ref => {
-  //       refs.map = ref;
-  //       console.log(ref);
-  //     },
-  //     // onZoomChanged: ({ onZoomChange }) => () => {
-  //     //   onZoomChange(refs.map.getZoom())
-  //     //   console.log(refs.map.getZoom())
-  //      // console.log(refs.map.getCenter())
-        
-  //     //}
-  //   }
-  //}),
   withScriptjs,
   withGoogleMap
 )(props =>
@@ -59,7 +40,6 @@ const MapWithControlledZoom = compose(
     ref={props.onMapMounted}
     onZoomChanged={props.onZoomChanged}
     onDragEnd={props.onCenterChanged}
-    //onCenterChanged={props.onCenterChanged}
     
   >
 
