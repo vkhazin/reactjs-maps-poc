@@ -1,5 +1,6 @@
 # reactjs-maps-poc
 
+React,Axios,Restfull API(get marker data with obtained LeftTop and RightBottom Lng/Lat from end point) , GoogleMap API(Map, user Marker) 
 ## Requirements
 
 1. ReactJS SPA web application with the least number of artefacts in the project
