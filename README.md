@@ -82,9 +82,23 @@ curl -POST https://gsqztydwpe.execute-api.us-east-1.amazonaws.com/latest/geoHash
 
 ## How to submit your work
 
-1. Fork the repo
-1. Commit to your own repo
-1. Submit a pull request for review and acceptance
+Instead of circles
+Use heatmap, where weight is the value returned by the end-point
+Read initial map coordinates, precision, lat/lon delta from the query string to centre the map
+Allow zoom-in/out and move of the map, fetch data based on the new map location
+Formula to calculate the precision:
+  const minPrecision = 4;
+  const maxPrecision = 8;
+  const maxLatitudeDelta = 1.5;
+  const logBase = 1.91;
+  const correctionFactor = 1.4;
+  const precision = Math.max(
+      minPrecision,
+      Math.min(
+        ((maxLatitudeDelta - Math.log(latitudeDelta)/Math.log(logBase)) * correctionFactor),
+        maxPrecision
+      )
+    );
 
 
 
