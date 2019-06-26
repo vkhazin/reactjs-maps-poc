@@ -61,8 +61,6 @@ complated project
 ```
 
 
-'
-```
 
 #### Response
 
@@ -146,9 +144,8 @@ complated project
             "value": 1979.569230886606,
             "count": 26,
             "valueRange": "poor"
-        },
+        }
 ```
-
 ## New requirement
 
 1. Instead of circles
