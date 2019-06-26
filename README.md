@@ -30,7 +30,7 @@ complated project
 ### geoHash Query
 
 #### Request
-
+```
 {
 	"timestampMs": {
 		"from": 1514768401000,
