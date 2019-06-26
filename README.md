@@ -31,53 +31,122 @@ complated project
 
 #### Request
 
+{
+	"timestampMs": {
+		"from": 1514768401000,
+		"to": 1577840401000
+	},
+	"boundary": {
+		"topLeft": {
+			"lat": 43.86056486018512,
+			"lon": -79.48820762336254
+		},
+		"bottomRight": {
+			"lat": 43.849911721297154,
+			"lon": -79.47820767760277
+		}
+	},
+	"precision": 8,
+	"timeoutMs": 30000,
+	"deviceId": "157929A2-3843-4F55-88FD-00EB3171ECE5",
+	"connectionType": "cellular",
+	"provider": "Rogers Wireless",
+	"filterByProvider": false,
+	"filterByDeviceId": true,
+	"latencyRanges": {
+		"good": 150,
+		"poor": 250
+	}
+}
 ```
-curl -POST https://gsqztydwpe.execute-api.us-east-1.amazonaws.com/latest/geoHash \
-  -H 'content-type:application/json' \
-  -d '{
-    "timestampMs": {
-      "from": 1239065720835,
-      "to": 1870217733565
-    },
-    "boundary": {
-      "topLeft": {
-        "lat": 44.56657,
-        "lon": -81.916815
-      },
-      "bottomRight": {
-        "lat": 42.697970000000005,
-        "lon": -77.137755          
-      }
-    },
-    "precision": 5,
-    "timeoutMs": 30000
-  }
+
+
 '
 ```
 
 #### Response
 
 ```
-[
-  {
-    "location": {
-      "lat": 43.85275773228681,
-      "lon": -79.48056226373973
+{
+    "region": {
+        "value": 302.7456439625133,
+        "valueRange": "poor"
     },
-    "geoPoint": "43.85275773228681,-79.48056226373973",
-    "value": 515.8061371841155,
-    "count": 5707
-  },
-  {
-    "location": {
-      "lat": 43.85963528417051,
-      "lon": -79.47883606888354
+    "provider": {
+        "value": 293.7247081860494,
+        "valueRange": "poor"
     },
-    "geoPoint": "43.85963528417051,-79.47883606888354",
-    "value": 365.72096317280455,
-    "count": 707
-  }
-]
+    "device": {
+        "value": 300.35619598300724,
+        "valueRange": "poor"
+    },
+    "latency": [
+        {
+            "location": {
+                "lat": 43.85542795644142,
+                "lon": -79.48320319410414
+            },
+            "geoPoint": "43.85542795644142,-79.48320319410414",
+            "altitude": 225.96572542190552,
+            "value": 290.3104166984558,
+            "count": 96,
+            "valueRange": "poor"
+        },
+        {
+            "location": {
+                "lat": 43.85527755606121,
+                "lon": -79.48315945094717
+            },
+            "geoPoint": "43.85527755606121,-79.48315945094717",
+            "altitude": 227.88265860421316,
+            "value": 293.40285731724333,
+            "count": 70,
+            "valueRange": "poor"
+        },
+        {
+            "location": {
+                "lat": 43.858516342006624,
+                "lon": -79.48659393936396
+            },
+            "geoPoint": "43.858516342006624,-79.48659393936396",
+            "altitude": 228.74850781758627,
+            "value": 72.54166666666667,
+            "count": 48,
+            "valueRange": "good"
+        },
+        {
+            "location": {
+                "lat": 43.859036933031994,
+                "lon": -79.48281004891864
+            },
+            "geoPoint": "43.859036933031994,-79.48281004891864",
+            "altitude": 228.00519670758928,
+            "value": 2477.2714287894114,
+            "count": 28,
+            "valueRange": "poor"
+        },
+        {
+            "location": {
+                "lat": 43.859096266544206,
+                "lon": -79.48181610626096
+            },
+            "geoPoint": "43.859096266544206,-79.48181610626096",
+            "altitude": 228.13919947697565,
+            "value": 622.976923429049,
+            "count": 26,
+            "valueRange": "poor"
+        },
+        {
+            "location": {
+                "lat": 43.85908182065647,
+                "lon": -79.48247473042171
+            },
+            "geoPoint": "43.85908182065647,-79.48247473042171",
+            "altitude": 229.10818774883563,
+            "value": 1979.569230886606,
+            "count": 26,
+            "valueRange": "poor"
+        },
 ```
 
 ## New requirement
