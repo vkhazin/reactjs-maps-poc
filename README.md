@@ -80,7 +80,7 @@ curl -POST https://gsqztydwpe.execute-api.us-east-1.amazonaws.com/latest/geoHash
 ]
 ```
 
-## How to submit your work
+## New requirement
 
 1. Instead of circles
 1. Use heatmap, where weight is the value returned by the end-point
