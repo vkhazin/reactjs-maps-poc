@@ -10,7 +10,6 @@ GoogleMap API(Map, user Markers)
 
 complated project
 
-![](./media/complet.png)
 ## Requirements
 
 1. ReactJS SPA web application with the least number of artefacts in the project
@@ -24,6 +23,29 @@ complated project
 ![](./media/sample-map.png)
 1. Developer will address comments and issues reported
 1. Developer will Walk thorugh the deliverables to explain the details and artefacts in the project
+
+## New requirement
+
+1. Instead of circles
+1. Use heatmap, where weight is the value returned by the end-point
+1. Read initial map coordinates, precision, lat/lon delta from the query string to centre the map
+1. Allow zoom-in/out and move of the map, fetch data based on the new map location
+1. Formula to calculate the precision:
+```
+  const minPrecision = 4;
+  const maxPrecision = 8;
+  const maxLatitudeDelta = 1.5;
+  const logBase = 1.91;
+  const correctionFactor = 1.4;
+  const precision = Math.max(
+      minPrecision,
+      Math.min(
+        ((maxLatitudeDelta - Math.log(latitudeDelta)/Math.log(logBase)) * correctionFactor),
+        maxPrecision
+      )
+    );
+
+```
 
 ## Data End-Point
 
@@ -145,27 +167,5 @@ complated project
             "count": 26,
             "valueRange": "poor"
         }
-```
-## New requirement
-
-1. Instead of circles
-1. Use heatmap, where weight is the value returned by the end-point
-1. Read initial map coordinates, precision, lat/lon delta from the query string to centre the map
-1. Allow zoom-in/out and move of the map, fetch data based on the new map location
-1. Formula to calculate the precision:
-```
-  const minPrecision = 4;
-  const maxPrecision = 8;
-  const maxLatitudeDelta = 1.5;
-  const logBase = 1.91;
-  const correctionFactor = 1.4;
-  const precision = Math.max(
-      minPrecision,
-      Math.min(
-        ((maxLatitudeDelta - Math.log(latitudeDelta)/Math.log(logBase)) * correctionFactor),
-        maxPrecision
-      )
-    );
-
 ```
 
