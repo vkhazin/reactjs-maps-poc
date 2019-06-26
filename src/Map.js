@@ -7,13 +7,13 @@ import { MarkerClusterer }  from "react-google-maps/lib/components/addons/Marker
 var lata=43.8527577322868;
 var lnga=-79.48056226373973;
 //_______________________________________  2.Maps is to center on the current user geo location ___
-navigator.geolocation.getCurrentPosition(
-  position => {
-    lata= position.coords.latitude; 
-    lnga=position.coords.longitude;
-  }, 
-  error => console.log(error)
-);
+// navigator.geolocation.getCurrentPosition(
+//   position => {
+//     lata= position.coords.latitude; 
+//     lnga=position.coords.longitude;
+//   }, 
+//   error => console.log(error)
+// );
 
 const MapWithAMarkerClusterer = compose(
   withProps({

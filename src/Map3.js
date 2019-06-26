@@ -1,7 +1,11 @@
 import React, {Component} from "react"
+import PropTypes from 'prop-types';
 import { compose, withProps, withState, withHandlers }  from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker,InfoWindow , Circle } from "react-google-maps"
+import HeatmapLayer from 'react-google-maps/lib/components/visualization/HeatmapLayer';
 import axios from 'axios';
+// import MapWithControlledZoom from "./Maptmp"
+
 
 var image= {
   high: {url: require('./asset/1.png')},
@@ -13,13 +17,14 @@ var image= {
 var lata=43.8527577322868;
 var lnga=-79.48056226373973;
 //_______________________________________  2.Maps is to center on the current user geo location ___
-navigator.geolocation.getCurrentPosition(
-  position => {
-    lata= position.coords.latitude; 
-    lnga=position.coords.longitude;
-  }, 
-  error => console.log(error)
-);
+// navigator.geolocation.getCurrentPosition(
+//   position => {
+//     lata= position.coords.latitude; 
+//     lnga=position.coords.longitude;
+//   }, 
+//   error => console.log(error)
+// );
+
 
 const MapWithControlledZoom = compose(
   withProps({
@@ -41,7 +46,10 @@ const MapWithControlledZoom = compose(
     onZoomChanged={props.onZoomChanged}
     onDragEnd={props.onCenterChanged}    
   >
-
+  {/* <HeatmapLayer
+        // data={props.mapData}
+        // options={{radius: 20}}
+      /> */}
     {props.markers.map(marker => (
         <Marker
           key={marker.geoPoint}
@@ -54,9 +62,17 @@ const MapWithControlledZoom = compose(
 
 
 class Map extends React.PureComponent {
-  componentWillMount() {
-    this.setState({ 
-      markers: [] ,
+  constructor(props){
+    super(props);
+    const {lat, lng} = this.props.initialCenter;
+    this.updateData = this.updateData.bind(this);
+    this.state={
+      currentLocation: {
+        lat: lat,
+        lng: lng
+      },
+      mapData: [] ,
+      markers:[],
       lat:43.85275773228681,
       lng:-79.48056226373973,
       precision:3,
@@ -64,16 +80,19 @@ class Map extends React.PureComponent {
       boundTopLeftLng:-81.916815,
       boundBottomRightLat:42.697970000000005, 
       boundBottomRightLng:-77.137755
-    })
+    }
+    this.handleMapMounted = this.handleMapMounted.bind(this);
+    this.handleCenterChanged = this.handleCenterChanged.bind(this);
+    this.onZoomChanged=this.onZoomChanged.bind(this);
   }
-  handleMapMounted = this.handleMapMounted.bind(this);
-  handleCenterChanged = this.handleCenterChanged.bind(this);
+
   handleMapMounted(map) {
     this._map = map;
   }
 
   onZoomChanged(){
     console.log("changed")
+
   }
   getDataAPI(precision,boundTopLeftLat,boundTopLeftLng,boundBottomRightLat, boundBottomRightLng){
     axios.post(`https://gsqztydwpe.execute-api.us-east-1.amazonaws.com/latest/geoHash`, //send request
@@ -108,7 +127,22 @@ class Map extends React.PureComponent {
       .then(res => {  //response
         console.log("respoons"+ res.data.latency);
         this.setState({markers:res.data.latency});
-        
+         var filteredData=[];
+          for (var i = 0; i < res.data.latency.length; i++) {
+            const point = res.data.latency[i];
+            const htmapPoint = {
+              // eslint-disable-next-line no-undef
+              location: new google.maps.LatLng(
+                point.lat,
+                point.lon
+              ), 
+              weight: 1
+            };
+            filteredData.push(htmapPoint);
+          }
+          // after loop is done, update heatmap data
+          this.setState({mapData: filteredData});
+          console.log(filteredData);
       })
     
   }
@@ -117,6 +151,7 @@ class Map extends React.PureComponent {
     console.log("did mounted")
 
   }
+
   handleCenterChanged() {
    const nextCenterLat = this._map.getCenter().lat();
    const nextCenterLng = this._map.getCenter().lng();
@@ -151,7 +186,19 @@ class Map extends React.PureComponent {
   //  console.log("bound_s:",this.state.boundTopLeftLat,this.state.boundTopLeftLng,this.state.boundBottomRightLat,this.state.boundBottomRightLng)
   //  console.log(currentZoomLebel)
   //  console.log(nextCenterLat, nextCenterLng)
-  //  console.log(this.state.precision)
+   console.log(this.state.precision)
+
+  }
+  updateData(newBounds, newCenter) {
+    // Uncomment to pass new data to heatmap
+    //  this.setState({
+    //      mapData: [
+    //        {lat: 37.785, lng: -122.447, weight: 3},
+    //        {lat: 37.785, lng: -122.445, weight: 2},
+    //        {lat: 37.785, lng: -122.441, weight: 0.5},
+    //        {lat: 37.785, lng: -122.437, weight: 2}
+    //      ]
+    //  });
   }
 
   render() {
@@ -163,10 +210,27 @@ class Map extends React.PureComponent {
         onCenterChanged={this.handleCenterChanged}
         onDragEnd={this.handleCenterChanged}
         onZoomChanged={this.handleCenterChanged}
+        mapData={this.state.mapData}
+        zoom={12}
+        onMove={this.updateData}
+        heatmapRawData={this.state.mapData
+        }
       />
     )
   }
 }
+Map.defaultProps = {
+  // San Francisco by default
+  initialCenter: {
+    lat: 37.774929,
+    lng: -122.419416
+  }
+};
+
+Map.propTypes = {
+  zoom: PropTypes.number,
+  initialCenter: PropTypes.object
+};
 export default Map;
 
 
