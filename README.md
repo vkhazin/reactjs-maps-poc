@@ -6,9 +6,8 @@ Axios
 
 Restfull API(get marker data with LeftTop and RightBottom Lng/Lat from end point) 
 
-GoogleMap API(Map, user Markers) 
+GoogleMap API(Map, user Markers, heatmap) 
 
-complated project
 
 ## Requirements
 
@@ -22,7 +21,6 @@ complated project
 1. Map dynamically adjusts the data ploted based on the zoom level and the current map center, e.g.:
 ![](./media/sample-map.png)
 1. Developer will address comments and issues reported
-1. Developer will Walk thorugh the deliverables to explain the details and artefacts in the project
 
 ## New requirement
 
