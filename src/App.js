@@ -76,9 +76,8 @@ navigator.geolocation.getCurrentPosition(
      })
  
    }
+
    _onBoundsChange=(center, zoom, bounds, marginBounds)=> {
-
-
 
     // bound
     var boundTopLat  =bounds[0];   
@@ -102,6 +101,7 @@ navigator.geolocation.getCurrentPosition(
     else if(boundBottomLng>-77.137755)  boundBottomLng=-77.137755;
 
     var latitudeDelta=boundTopLat-boundBottomLat;
+
     const precision = Math.max(
       minPrecision,
       Math.min(
@@ -112,12 +112,6 @@ navigator.geolocation.getCurrentPosition(
     console.log("precision: " + precision);
 // zoom
 
-    // if(zoom<9) precision_cur=3;
-    // else if(zoom>19) precision_cur=12;
-    // else precision_cur=zoom-6;
-    // this.setState({
-    //   heatmapPoints: tmpdata[zoom]
-    // })
     console.log("zoom: " + zoom);
     this.getDataAPI(precision,boundTopLat, boundTopLng, boundBottomLat, boundBottomLng);
 
@@ -165,11 +159,36 @@ navigator.geolocation.getCurrentPosition(
       })
     
   }
+
+  getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            this.setState({
+              center: {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    }
+                }
+            );
+        })
+    } else {
+        //browser doesn't support geolocation, set as vancouver
+        this.setState({
+          center: {
+                    lat: 43.8527577322868,
+                    lng: -79.48056226373973
+                }
+            }
+        );
+    }
+}
   componentDidMount(){
-    // console.log(this.state.heatmapPoints);
+    console.log("current geo");
+    this.getLocation();
   }
    render() {
-     const apiKey = {key: ''}
+    console.log("default", this.state.center) ;
+    const apiKey = {key: ''}
      const heatMapData = {
       positions: this.state.heatmapPoints,
       options: {
@@ -188,7 +207,8 @@ navigator.geolocation.getCurrentPosition(
               heatmapLibrary={true}
               heatmap={heatMapData}
               onBoundsChange={this._onBoundsChange.bind(this)}
-              onClick={this.onMapClick.bind(this)}>
+              // onClick={this.onMapClick.bind(this)}
+              >
          </GoogleMapReact>
          <button className="toggleButton" onClick={this.toggleHeatMap.bind(this)}>Toggle heatmap</button>
        </div>
