@@ -1,9 +1,5 @@
-body, html {
+body {
   margin: 0;
-  padding: 0px;
-  min-height: 100%;
-  height: 100%;
-  background-color: rgb(233, 233, 250);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -14,42 +10,4 @@ body, html {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
-
-li{
-  font-family: sans-serif;
-  margin:0px;
-  color: red;
-}
-
-ul.header {
-  background-color: #111;
-  padding: 0;
-}
-ul.header li a {
-  color: #FFF;
-  font-weight: bold;
-  text-decoration: none;
-  padding: 20px;
-  display: inline-block;
-}
-.content {
-  background-color: #FFF;
-  height: 100%;
-  min-height: 100%;
-}
-.content h2 {
-  padding: 0;
-  margin: 0;
-  text-align: center;
-}
-.content li {
-  margin-bottom: 10px;
-}
-.full {
-  height: 100%;
-  min-height: 100%;
-}
-.hhh{
-   height: calc(100vh - 90px) 
 }
