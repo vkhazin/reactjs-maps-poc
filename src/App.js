@@ -11,7 +11,7 @@ const minPrecision = 4;
 const maxPrecision = 8;
 const maxLatitudeDelta = 1.5;
 const logBase = 1.91;
-const correctionFactor = 1.4;
+const correctionFactor = 1.4; 
 
 //_______________________________________  2.Maps is to center on the current user geo location ___
 navigator.geolocation.getCurrentPosition(
