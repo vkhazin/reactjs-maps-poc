@@ -100,6 +100,10 @@ navigator.geolocation.getCurrentPosition(
     if(boundBottomLng<-81.916815)  boundBottomLng=-81.916815;
     else if(boundBottomLng>-77.137755)  boundBottomLng=-77.137755;
 
+    //endpoint exception
+    if(boundTopLng>0) boundTopLng=360-boundTopLng;
+    if(boundBottomLng>0) boundBottomLng=360-boundBottomLng;
+
     var latitudeDelta=boundTopLat-boundBottomLat;
 
     const precision = Math.max(
