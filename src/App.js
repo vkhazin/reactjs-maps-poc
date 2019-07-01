@@ -84,8 +84,14 @@ navigator.geolocation.getCurrentPosition(
     var boundTopLng  =bounds[1]; 
     var boundBottomLat=bounds[2];
     var boundBottomLng=bounds[3];
+   //endpoint exception
+   if(boundTopLng>180) boundTopLng=boundTopLng-360;
+   if(boundBottomLng>180) boundBottomLng=boundBottomLng-360;
 
-
+   console.log(boundTopLat);
+   console.log(boundTopLng);
+   console.log(boundBottomLat);
+   console.log(boundBottomLng);
 
     if(boundTopLat>44.56657)  boundTopLat=44.56657;
     else if(boundTopLat<42.697970000000005)  boundTopLat=42.697970000000005;
@@ -96,15 +102,6 @@ navigator.geolocation.getCurrentPosition(
     else if(boundBottomLat<42.697970000000005)  boundBottomLat=42.697970000000005;
     if(boundBottomLng<-81.916815)  boundBottomLng=-81.916815;
     else if(boundBottomLng>-77.137755)  boundBottomLng=-77.137755;
-
-    //endpoint exception
-    if(boundTopLng>0) boundTopLng=boundTopLng-360;
-    if(boundBottomLng>0) boundBottomLng=boundBottomLng-360;
-
-    console.log(boundTopLat);
-    console.log(boundTopLng);
-    console.log(boundBottomLat);
-    console.log(boundBottomLng);
     
     var latitudeDelta=boundTopLat-boundBottomLat;
 
