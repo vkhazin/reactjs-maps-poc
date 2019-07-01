@@ -30,8 +30,8 @@ navigator.geolocation.getCurrentPosition(
      this.state = {
         heatmapVisible: true,
         heatmapPoints: [
-            {lat: 59.95, lng: 30.33},
-            {lat: 59.96, lng: 30.32}
+            {lat: 59.95, lng: 30.33, weight:0},
+            {lat: 59.96, lng: 30.32, weight:0}
           ],
         center: {
           lat: lata,
@@ -153,7 +153,7 @@ navigator.geolocation.getCurrentPosition(
         // this.setState({markers:res.data.latency});
         var kkk=[];
         res.data.latency.forEach(element => {
-          kkk.push({lat:element.location.lat, lng:element.location.lon});
+          kkk.push({lat:element.location.lat, lng:element.location.lon, weight: element.value});
 
         });
   
