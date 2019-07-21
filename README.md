@@ -78,15 +78,19 @@ GoogleMap API(Map, user Markers, heatmap)
 }
 ```
 
-#### Query for react native
+#### Query from react native
 ```
-http://localhost:3000/??deviceId=157929A2-3843-4F55-88FD-00EB3171ECE5
-&filterByProvider=true
-&filterByDeviceId=false
-&toplat=43.86056486018512
+http://localhost:3000/
+
+?toplat=43.86056486018512
 &toplon=-79.48820762336254
+
 &botlat=43.849911721297154
 &botlon=-79.47820767760277
+
+&deviceId=157929A2-3843-4F55-88FD-00EB3171ECE5
+&filterByProvider=true
+&filterByDeviceId=false
 ```
 
 #### Response
