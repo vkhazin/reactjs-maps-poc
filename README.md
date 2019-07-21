@@ -1,24 +1,20 @@
 # reactjs-maps-poc
 
-React app
+React js app
+GoogleMap API(heatmap) 
 
-Restfull API(get marker data with LeftTop and RightBottom Lng/Lat from end point) 
-
-GoogleMap API(Map, user Markers, heatmap) 
-
-
+![](./media/sample-map.png)
 ## Requirements
 
 1. ReactJS SPA web application with the least number of artefacts in the project
-1. Responsive and mobile browser friendl
-1. Maps is to center on the current user geo location
-1. Please note: currently, the data is availalbe in Southern Ontario, Canada only
-1. Maps tab is to display geoHash overlay based on geoHash query to the end-point mapping the Avg(***value***) NOT Sum(***count***)
-1. User can scroll the map with the overlay information updated automatically
-1. User can zoom in and out with increased/decreased precision of the data plotted on the map
-1. Map dynamically adjusts the data ploted based on the zoom level and the current map center, e.g.:
-![](./media/sample-map.png)
-1. Developer will address comments and issues reported
+2. Responsive and mobile browser friendl
+3. Maps is to center on the current user geo location
+4. Please note: currently, the data is availalbe in Southern Ontario, Canada only
+5. Maps tab is to display geoHash overlay based on geoHash query to the end-point mapping the Avg(***value***) NOT Sum(***count***)
+6. User can scroll the map with the overlay information updated automatically
+7. User can zoom in and out with increased/decreased precision of the data plotted on the map
+8. Map dynamically adjusts the data ploted based on the zoom level and the current map center, e.g.:
+9. Developer will address comments and issues reported
 
 ## New requirement
 
