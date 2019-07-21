@@ -2,8 +2,6 @@
 
 React app
 
-Axios
-
 Restfull API(get marker data with LeftTop and RightBottom Lng/Lat from end point) 
 
 GoogleMap API(Map, user Markers, heatmap) 
@@ -49,7 +47,7 @@ GoogleMap API(Map, user Markers, heatmap)
 
 ### geoHash Query
 
-#### Request
+#### Request for position data.
 ```
 {
 	"timestampMs": {
@@ -80,7 +78,16 @@ GoogleMap API(Map, user Markers, heatmap)
 }
 ```
 
-
+#### Query for react native
+```
+http://localhost:3000/??deviceId=157929A2-3843-4F55-88FD-00EB3171ECE5
+&filterByProvider=true
+&filterByDeviceId=false
+&toplat=43.86056486018512
+&toplon=-79.48820762336254
+&botlat=43.849911721297154
+&botlon=-79.47820767760277
+```
 
 #### Response
 
@@ -123,4 +130,3 @@ GoogleMap API(Map, user Markers, heatmap)
         },
         
 ```
-

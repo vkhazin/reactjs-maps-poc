@@ -1,7 +1,7 @@
- /* global google */
  import React, { Component } from 'react'
  import GoogleMapReact from 'google-map-react'
  import queryString from 'query-string';
+ import Config from './Config';
  import axios from 'axios';
 
 var lata=43.8527577322868;
@@ -54,18 +54,11 @@ navigator.geolocation.getCurrentPosition(
    
    _onBoundsChange=(center, zoom, bounds, marginBounds)=> {
 
-
-
     // bound
-    var boundTopLat  =bounds[0];   
+    var boundTopLat  =bounds[0];
     var boundTopLng  =bounds[1]; 
     var boundBottomLat=bounds[2];
     var boundBottomLng=bounds[3];
-
-    console.log(boundTopLat);
-    console.log(boundTopLng);
-    console.log(boundBottomLat);
-    console.log(boundBottomLng);
 
     if(boundTopLat>44.56657)  boundTopLat=44.56657;
     else if(boundTopLat<42.697970000000005)  boundTopLat=42.697970000000005;
@@ -85,8 +78,8 @@ navigator.geolocation.getCurrentPosition(
         maxPrecision
       )
     );
-    console.log("precision: " + precision);
-    console.log("zoom: " + zoom);
+    // console.log("precision: " + precision);
+    // console.log("zoom: " + zoom);
     this.getDataAPI(precision,boundTopLat, boundTopLng, boundBottomLat, boundBottomLng);
 
   }
@@ -141,21 +134,31 @@ navigator.geolocation.getCurrentPosition(
     console.log(params.deviceId);
     console.log(params.filterByProvider);
     console.log(params.filterByDeviceId);
+    console.log(Config.mapkey);
 
     this.setState({
       deviceId : params.deviceId,
       filterByProvider : params.filterByProvider,
       filterByDeviceId : params.filterByDeviceId,
-    
+      boundary: {
+          "topLeft": {
+            "lat": params.toplat,
+            "lon": params.toplon
+          },
+          "bottomRight": {
+            "lat": params.botlon,
+            "lon": params.toplon
+          }
+        },
     });
   }
    render() {
-     const apiKey = {key: ''}
+     const apiKey = {key: Config.mapApiKey}
      const heatMapData = {
       positions: this.state.heatmapPoints,
       options: {
-        radius: 20,
-        opacity: 0.6
+        radius: Config.radius,
+        opacity: Config.opacity
       }
      }
   
