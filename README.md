@@ -46,7 +46,7 @@ GoogleMap API(Map, user Markers, heatmap)
 ## Data End-Point
 
 ### geoHash Query
-
+![](./media/1.png)
 #### Request for position data.
 ```
 {
