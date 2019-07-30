@@ -48,6 +48,7 @@ Opacity:0.6
 ```
 ## How to get Params from url
 1. in order to get params from url, use "params.yourParams"
+2. exapmle------set State with the params(params.deviceID, params.filterByProvider, ... )
 ```
  componentDidMount(){
     // console.log(this.props.match.params);
