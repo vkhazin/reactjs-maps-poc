@@ -42,11 +42,41 @@ GoogleMap API(heatmap)
 ```
 path:src/Config.js
 
-Google Map Key: AIzaSyAxz3GgE2vOGEgM3ix7q0wotNsyJ1Am1yg
-Radius:20
+Google Map Key: "AIzaSyAxz3GgE2vOGEgM3ix7q0wotNsyJ1Am1yg",
+Radius:20,
 Opacity:0.6
+```
+##Params from url
+1. in order to get params from url, use "params.yourParams"
+```
+ componentDidMount(){
+    // console.log(this.props.match.params);
+    let url = this.props.location.search;
+    let params = queryString.parse(url);
+
+    console.log(params.deviceId);
+    console.log(params.filterByProvider);
+    console.log(params.filterByDeviceId);
+    console.log(Config.mapkey);
+
+    this.setState({
+      deviceId : params.deviceId,
+      filterByProvider : params.filterByProvider,
+      filterByDeviceId : params.filterByDeviceId,
+      boundary: {
+          "topLeft": {
+            "lat": params.toplat,
+            "lon": params.toplon
+          },
+          "bottomRight": {
+            "lat": params.botlon,
+            "lon": params.toplon
+          }
+        },
+    });
+  }
 ```
 ## Data End-Point
 
-### geoHash Query vs query from react native
+### geoHash Query vs query from react native Example
 ![](./media/1.png)
