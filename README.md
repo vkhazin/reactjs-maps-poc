@@ -46,7 +46,7 @@ Google Map Key: "AIzaSyAxz3GgE2vOGEgM3ix7q0wotNsyJ1Am1yg",
 Radius:20,
 Opacity:0.6
 ```
-## Params from url
+## How to get Params from url
 1. in order to get params from url, use "params.yourParams"
 ```
  componentDidMount(){
