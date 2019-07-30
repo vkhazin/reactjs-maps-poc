@@ -38,7 +38,14 @@ GoogleMap API(heatmap)
     );
 
 ```
+## Config
+```
+path:src/Config.js
 
+Google Map Key: AIzaSyAxz3GgE2vOGEgM3ix7q0wotNsyJ1Am1yg
+Radius:20
+Opacity:0.6
+```
 ## Data End-Point
 
 ### geoHash Query vs query from react native
