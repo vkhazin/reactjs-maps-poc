@@ -59,16 +59,16 @@ navigator.geolocation.getCurrentPosition(
     var boundTopLng  =bounds[1]; 
     var boundBottomLat=bounds[2];
     var boundBottomLng=bounds[3];
-
-    if(boundTopLat>44.56657)  boundTopLat=44.56657;
-    else if(boundTopLat<42.697970000000005)  boundTopLat=42.697970000000005;
-    if(boundTopLng<-81.916815)  boundTopLng=-81.916815;
-    else if(boundTopLng>-77.137755)  boundTopLng=-77.137755;
+    //// if out of Toronto of canada, boundary will be fixed
+    // if(boundTopLat>44.56657)  boundTopLat=44.56657;
+    // else if(boundTopLat<42.697970000000005)  boundTopLat=42.697970000000005;
+    // if(boundTopLng<-81.916815)  boundTopLng=-81.916815;
+    // else if(boundTopLng>-77.137755)  boundTopLng=-77.137755;
  
-    if(boundBottomLat>44.56657)  boundBottomLat=44.56657;
-    else if(boundBottomLat<42.697970000000005)  boundBottomLat=42.697970000000005;
-    if(boundBottomLng<-81.916815)  boundBottomLng=-81.916815;
-    else if(boundBottomLng>-77.137755)  boundBottomLng=-77.137755;
+    // if(boundBottomLat>44.56657)  boundBottomLat=44.56657;
+    // else if(boundBottomLat<42.697970000000005)  boundBottomLat=42.697970000000005;
+    // if(boundBottomLng<-81.916815)  boundBottomLng=-81.916815;
+    // else if(boundBottomLng>-77.137755)  boundBottomLng=-77.137755;
 
     var latitudeDelta=boundTopLat-boundBottomLat;
     const precision = Math.max(
@@ -78,8 +78,13 @@ navigator.geolocation.getCurrentPosition(
         maxPrecision
       )
     );
-    // console.log("precision: " + precision);
-    // console.log("zoom: " + zoom);
+
+
+    console.log("boundTopLat: " + boundTopLat);
+    console.log("boundBottomLat: " + boundBottomLat);
+    console.log("latitudeDelta: " + latitudeDelta);
+    console.log("zoom: " + zoom);
+
     this.getDataAPI(precision,boundTopLat, boundTopLng, boundBottomLat, boundBottomLng);
 
   }
@@ -126,32 +131,48 @@ navigator.geolocation.getCurrentPosition(
       })
     
   }
+
   componentDidMount(){
     // console.log(this.props.match.params);
     let url = this.props.location.search;
     let params = queryString.parse(url);
 
-    console.log(params.deviceId);
-    console.log(params.filterByProvider);
-    console.log(params.filterByDeviceId);
-    console.log(Config.mapkey);
+    if(params.topLat && params.topLon && params.botLat && params.botLon){
+      console.log(params.topLat);
+      console.log(params.topLon);
+      console.log(params.botLat);
+      console.log(params.botLon);
 
-    this.setState({
-      deviceId : params.deviceId,
-      filterByProvider : params.filterByProvider,
-      filterByDeviceId : params.filterByDeviceId,
-      boundary: {
-          "topLeft": {
-            "lat": params.toplat,
-            "lon": params.toplon
+      var lat_error=params.topLat-params.botLat;
+      var lat_center=params.topLat-lat_error/2;
+      var lon_error=params.topLon-params.botLon;
+      var lon_center=params.topLon-lon_error/2;
+  
+      var latitudeDelta=Math.abs(lat_error);
+      var cal_zoom=Math.log2(360 * ((window.innerHeight/256) / latitudeDelta));
+      this.setState({
+        deviceId : params.deviceId,
+        filterByProvider : params.filterByProvider,
+        filterByDeviceId : params.filterByDeviceId,
+        boundary: {
+            "topLeft": {
+              "lat": params.topLat,
+              "lon": params.topLon
+            },
+            "bottomRight": {
+              "lat": params.botLat,
+              "lon": params.botLon
+            }
           },
-          "bottomRight": {
-            "lat": params.botlon,
-            "lon": params.toplon
-          }
+        zoom:cal_zoom,
+        center:{
+          lat: lat_center,
+          lng: lon_center
         },
-    });
+      });
+    }
   }
+
    render() {
      const apiKey = {key: Config.mapApiKey}
      const heatMapData = {
