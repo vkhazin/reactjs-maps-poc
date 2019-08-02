@@ -11,7 +11,6 @@ const maxPrecision = 8;
 const maxLatitudeDelta = 1.5;
 const logBase = 1.91;
 const correctionFactor = 1.4;
-
 // _______________________________________  current user geo location ___
 navigator.geolocation.getCurrentPosition(
   position => {
@@ -48,6 +47,7 @@ navigator.geolocation.getCurrentPosition(
         deviceId:"157929A2-3843-4F55-88FD-00EB3171ECE5",
         filterByDeviceId:'',
         filterByProvider: false,
+        mapTypeId:"roadmap"
      }
    }
  
@@ -131,7 +131,20 @@ navigator.geolocation.getCurrentPosition(
       })
     
   }
-
+  getMapOptions(maps){
+    return {
+        mapTypeControl: true,
+        mapTypeId: maps.MapTypeId.ROADMAP,
+        mapTypeControlOptions: {
+            style: maps.MapTypeControlStyle.HORIZONTAL_BAR,
+            position: maps.ControlPosition.TOP_LEFT,
+            mapTypeIds: [
+                maps.MapTypeId.ROADMAP,
+                maps.MapTypeId.SATELLITE
+            ]
+        },
+    };
+  }
   componentDidMount(){
     // console.log(this.props.match.params);
     let url = this.props.location.search;
@@ -179,7 +192,7 @@ navigator.geolocation.getCurrentPosition(
       positions: this.state.heatmapPoints,
       options: {
         radius: Config.radius,
-        opacity: Config.opacity
+        opacity: Config.opacity,
       }
      }
   
@@ -190,7 +203,8 @@ navigator.geolocation.getCurrentPosition(
               bootstrapURLKeys={apiKey}
               defaultCenter={this.state.center}
               defaultZoom={this.state.zoom}
-              heatmapLibrary={true}
+              options={this.getMapOptions}
+              heatmapLibrary={true}     
               heatmap={heatMapData}
               onBoundsChange={this._onBoundsChange.bind(this)}
               >
