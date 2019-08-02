@@ -80,10 +80,10 @@ navigator.geolocation.getCurrentPosition(
     );
 
 
-    console.log("boundTopLat: " + boundTopLat);
-    console.log("boundBottomLat: " + boundBottomLat);
-    console.log("latitudeDelta: " + latitudeDelta);
-    console.log("zoom: " + zoom);
+    // console.log("boundTopLat: " + boundTopLat);
+    // console.log("boundBottomLat: " + boundBottomLat);
+    // console.log("latitudeDelta: " + latitudeDelta);
+    // console.log("zoom: " + zoom);
 
     this.getDataAPI(precision,boundTopLat, boundTopLng, boundBottomLat, boundBottomLng);
 
@@ -151,10 +151,10 @@ navigator.geolocation.getCurrentPosition(
     let params = queryString.parse(url);
 
     if(params.topLat && params.topLon && params.botLat && params.botLon){
-      console.log(params.topLat);
-      console.log(params.topLon);
-      console.log(params.botLat);
-      console.log(params.botLon);
+      // console.log(params.topLat);
+      // console.log(params.topLon);
+      // console.log(params.botLat);
+      // console.log(params.botLon);
 
       var lat_error=params.topLat-params.botLat;
       var lat_center=params.topLat-lat_error/2;
