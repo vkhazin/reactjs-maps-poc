@@ -38,8 +38,46 @@ GoogleMap API(heatmap)
     );
 
 ```
+## Config
+```
+path:src/Config.js
 
-## Data End-Point
+Google Map Key: "AIzaSyAxz3GgE2vOGEgM3ix7q0wotNsyJ1Am1yg",
+Radius:20,
+Opacity:0.6
+```
+## How to get Params from url
+1. in order to get params from url, use "params.yourParams"
+2. exapmle------set State with the params(params.deviceID, params.filterByProvider, ... )
+```
+ componentDidMount(){
+    // console.log(this.props.match.params);
+    let url = this.props.location.search;
+    let params = queryString.parse(url);
 
-### geoHash Query vs query from react native
+    console.log(params.deviceId);
+    console.log(params.filterByProvider);
+    console.log(params.filterByDeviceId);
+    console.log(Config.mapkey);
+
+    this.setState({
+      deviceId : params.deviceId,
+      filterByProvider : params.filterByProvider,
+      filterByDeviceId : params.filterByDeviceId,
+      boundary: {
+          "topLeft": {
+            "lat": params.toplat,
+            "lon": params.toplon
+          },
+          "bottomRight": {
+            "lat": params.botlon,
+            "lon": params.toplon
+          }
+        },
+    });
+  }
+```
+## Example Data End-Point
+
+### geoHash Query vs query from react native Example
 ![](./media/1.png)
