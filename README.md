@@ -55,25 +55,20 @@ Opacity:0.6
     let url = this.props.location.search;
     let params = queryString.parse(url);
 
-    console.log(params.deviceId);
-    console.log(params.filterByProvider);
-    console.log(params.filterByDeviceId);
-    console.log(Config.mapkey);
-
     this.setState({
       deviceId : params.deviceId,
       filterByProvider : params.filterByProvider,
       filterByDeviceId : params.filterByDeviceId,
       boundary: {
-          "topLeft": {
-            "lat": params.toplat,
-            "lon": params.toplon
+            "topLeft": {
+              "lat": params.topLat,
+              "lon": params.topLon
+            },
+            "bottomRight": {
+              "lat": params.botLat,
+              "lon": params.botLon
+            }
           },
-          "bottomRight": {
-            "lat": params.botlon,
-            "lon": params.toplon
-          }
-        },
     });
   }
 ```
