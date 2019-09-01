@@ -131,7 +131,17 @@ navigator.geolocation.getCurrentPosition(
       })
     
   }
-  getMapOptions(maps){
+  getMapOptions = (maps) => {
+
+    let params = queryString.parse(this.props.location.search);
+     
+     let canScroll = true;
+     if(params.fixView == "true")
+     {
+      canScroll = false;
+     }
+//     console.log(canScroll);
+     
     return {
         mapTypeControl: true,
         mapTypeId: maps.MapTypeId.ROADMAP,
@@ -143,13 +153,15 @@ navigator.geolocation.getCurrentPosition(
                 maps.MapTypeId.SATELLITE
             ]
         },
+        scrollwheel: canScroll,
+        draggable: canScroll
     };
   }
   componentDidMount(){
     // console.log(this.props.match.params);
     let url = this.props.location.search;
     let params = queryString.parse(url);
-
+    
     if(params.topLat && params.topLon && params.botLat && params.botLon){
       // console.log(params.topLat);
       // console.log(params.topLon);
@@ -187,6 +199,7 @@ navigator.geolocation.getCurrentPosition(
   }
 
    render() {
+     
      const apiKey = {key: Config.mapApiKey}
      const heatMapData = {
       positions: this.state.heatmapPoints,
