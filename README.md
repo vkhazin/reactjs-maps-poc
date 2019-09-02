@@ -74,7 +74,7 @@ Opacity:0.6
 ```
 ## How to disable zoom-in/out or movement of the map based on the url parameter
 1. in order to disable zoom-in/out or movement of the map, use https://reactjs-maps-poc.surge.sh/?fixView=true
-2. to enable it, use https://reactjs-maps-poc.surge.sh/?fixView=false or without query paramters: https://reactjs-maps-poc.surge.sh
+2. to enable it, use https://reactjs-maps-poc.surge.sh/?fixView=false or without query parameters: https://reactjs-maps-poc.surge.sh
 ```
 
 ```
