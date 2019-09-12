@@ -153,8 +153,8 @@ class Mapheat extends Component {
                maps.MapTypeId.SATELLITE
            ]
        },
-       scrollwheel: canScroll,
-       draggable: canScroll
+       draggable: canScroll,
+       zoomControl: canScroll,
    };
  }
  componentDidMount(){
